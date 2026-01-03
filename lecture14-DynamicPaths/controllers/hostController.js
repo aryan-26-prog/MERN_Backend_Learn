@@ -64,3 +64,14 @@ exports.postEditHome = (req, res) => {
   res.redirect('/host/host-home-list');
 };
 
+//Used to delete homes from the hosthomes
+exports.postDeleteHome = (req, res, next) => {
+  const homeId = req.params.homeId;
+  console.log("Came to delete", homeId);
+  Home.deleteById(homeId, error => {
+    if(error) {
+      console.log("Error While Deleting", error);
+    }
+    res.redirect('/host/host-home-list');
+  });
+};

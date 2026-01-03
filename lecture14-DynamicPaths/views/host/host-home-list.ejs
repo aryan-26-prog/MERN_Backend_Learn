@@ -117,17 +117,17 @@
                 Edit
               </a>
 
-              <form action="/host/delete-home" method="POST" class="flex-1">
-                <input type="hidden" name="homeId" value="<%= home.id %>" />
+              <form action="/host/delete-home/<%= home.id %>" method="POST" class="flex-1">
                 <button
                   class="w-full border border-white/20
-                         hover:border-rose-500
-                         text-gray-300 hover:text-rose-400
-                         font-semibold py-3 rounded-xl
-                         transition-all duration-300">
+                        hover:border-rose-500
+                        text-gray-300 hover:text-rose-400
+                        font-semibold py-3 rounded-xl
+                        transition-all duration-300">
                   Delete
                 </button>
               </form>
+
 
             </div>
 

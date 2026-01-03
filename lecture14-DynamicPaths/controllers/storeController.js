@@ -36,6 +36,16 @@ exports.postAddToFav = (req, res) => {
   });
 };
 
+exports.postRemoveFromFavorite = (req, res) => {
+  const homeId = req.params.homeId;
+  Favorite.deleteById(homeId, error => {
+    if(error) {
+      console.log("Error while removing from favorites", error);
+    }
+    res.redirect("/fav-list");
+  });
+};
+
 exports.getFavList = (req, res) => {
   Favorite.getAll(favorites => {
     res.render("store/fav-list", {

@@ -44,4 +44,19 @@ module.exports = class Favorite {
       );
     });
   }
+
+  static deleteById(delHomeId, callback) {
+  this.getAll(favorites => {
+
+    const updatedFavorites = favorites.filter(
+      home => home.id !== delHomeId
+    );
+
+    fs.writeFile(
+      favoritePath,
+      JSON.stringify(updatedFavorites, null, 2),
+      callback
+    );
+  });
+}
 };

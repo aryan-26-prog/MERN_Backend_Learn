@@ -3,20 +3,22 @@
 const Favorite = require("../models/favorite");
 const Home = require("../models/home");
 
-//This middleware to used get homes list and show it in the UI
-exports.getHomes = (req, res, next) => {
-  Home.fetchAll((registeredHomes) => {
+
+exports.getIndex = (req, res, next) => {
+  Home.fetchAll().then(([registeredHomes, fields]) => {
     console.log(registeredHomes);
-  res.render('store/home-list', {registeredHomes: registeredHomes, pageTitle: 'Homes List'});
+    res.render('store/index', {registeredHomes: registeredHomes, pageTitle: 'airbnb Home'});
   });
 };
 
-exports.getIndex = (req, res, next) => {
-  Home.fetchAll((registeredHomes) => {
+//This middleware to used get homes list and show it in the UI
+exports.getHomes = (req, res, next) => {
+  Home.fetchAll().then(([registeredHomes, fields]) => {
     console.log(registeredHomes);
-  res.render('store/index', {registeredHomes: registeredHomes, pageTitle: 'airbnb Home'});
-  });
+  res.render('store/home-list', {registeredHomes: registeredHomes, pageTitle: 'Homes List'});
+  })
 };
+
 
 exports.getBookings = (req, res, next) => {
   Home.fetchAll((registeredHomes) => {
@@ -48,10 +50,12 @@ exports.postRemoveFromFavorite = (req, res) => {
 
 exports.getFavList = (req, res) => {
   Favorite.getAll(favorites => {
-    res.render("store/fav-list", {
+    Home.fetchAll().then(([registeredHomes, fields]) => {
+      res.render("store/fav-list", {
       registeredHomes: favorites,
       pageTitle: "My Favorites"
     });
+    })
   });
 };
 

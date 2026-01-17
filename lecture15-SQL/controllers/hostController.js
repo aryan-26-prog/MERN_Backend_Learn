@@ -8,6 +8,7 @@ exports.getAddHome = (req, res, next) => {
   res.render('host/edit-home', {pageTitle: 'Add Home to airbnb', editing: false, home: null});
 };
 
+
 //This middleware is used to show the get request of edit-homes page
 exports.getEditHome = (req, res, next) => {
   const homeId = req.params.homeId;
@@ -24,11 +25,12 @@ exports.getEditHome = (req, res, next) => {
 };
 
 exports.getHostHomes = (req, res, next) => {
-  Home.fetchAll((registeredHomes) => {
+  Home.fetchAll().then(([registeredHomes, fields]) => {
   console.log(registeredHomes);
   res.render('host/host-home-list', {registeredHomes: registeredHomes, pageTitle: 'Host Homes List'});
   });
 };
+
 
 //this middleware is used to handle the post request of add-homes page.
 exports.postAddHome = (req, res) => {

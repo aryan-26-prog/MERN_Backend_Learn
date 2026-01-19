@@ -350,19 +350,21 @@
           <!-- Description -->
           <div class="group">
             <label class="block text-sm font-semibold text-gray-400 mb-3">
-              Description (Optional)
+              Description
             </label>
+
             <textarea
               name="description"
               rows="4"
               placeholder="Describe what makes your place special..."
               class="w-full px-5 py-4 rounded-xl bg-black/40 border border-white/10 
-                     text-white placeholder-gray-500 resize-none
-                     focus:ring-2 focus:ring-rose-500 focus:border-transparent 
-                     outline-none transition-all duration-300
-                     group-hover:border-white/20"
-            ></textarea>
+                    text-white placeholder-gray-500 resize-none
+                    focus:ring-2 focus:ring-rose-500 focus:border-transparent 
+                    outline-none transition-all duration-300
+                    group-hover:border-white/20"
+            ><%= home?.description || "" %></textarea>
           </div>
+
           
           <!-- Amenities -->
           <div class="group">

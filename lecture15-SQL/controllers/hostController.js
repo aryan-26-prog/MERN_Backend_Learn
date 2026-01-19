@@ -34,7 +34,7 @@ exports.getHostHomes = (req, res, next) => {
 
 //this middleware is used to handle the post request of add-homes page.
 exports.postAddHome = (req, res) => {
-  const { houseName, price, location, rating, photoUrl } = req.body;
+  const { houseName, price, location, rating, photoUrl, description } = req.body;
 
   const home = new Home(
     null,
@@ -42,7 +42,8 @@ exports.postAddHome = (req, res) => {
     price,
     location,
     rating,
-    photoUrl
+    photoUrl,
+    description
   );
 
   home.save();
@@ -51,7 +52,7 @@ exports.postAddHome = (req, res) => {
 
 
 exports.postEditHome = (req, res) => {
-  const { homeId, houseName, price, location, rating, photoUrl } = req.body;
+  const { homeId, houseName, price, location, rating, photoUrl, description } = req.body;
 
   const updatedHome = new Home(
     homeId,
@@ -59,7 +60,8 @@ exports.postEditHome = (req, res) => {
     price,
     location,
     rating,
-    photoUrl
+    photoUrl,
+    description
   );
 
   updatedHome.save();

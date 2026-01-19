@@ -134,7 +134,7 @@
           <!-- Image -->
           <div class="h-48 md:h-56 overflow-hidden relative">
             <img
-              src="<%= home.photoUrl p%>"
+              src="<%= home.photoUrl %>"
               alt="<%= home.houseName %>"
               class="w-full h-full object-cover
                      transition-transform duration-700
@@ -172,6 +172,17 @@
                 <span><%= home.location %></span>
               </div>
             </div>
+
+            <!-- Description -->
+            <% if (home.description) { %>
+              <p class="text-gray-400 text-sm leading-relaxed
+                        line-clamp-3
+                        group-hover:text-gray-300
+                        transition-colors duration-300">
+                <%= home.description %>
+              </p>
+            <% } %>
+
 
             <!-- Details -->
             <div class="flex items-center gap-4 text-sm text-gray-400">

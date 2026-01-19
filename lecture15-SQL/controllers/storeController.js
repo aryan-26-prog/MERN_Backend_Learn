@@ -63,7 +63,8 @@ exports.getHomeDetails = (req, res, next) => {
   const homeID = req.params.homeID;
   console.log("At home details page", homeID);
 
-  Home.findById(homeID, (home) => {
+  Home.findById(homeID).then(([homes]) => {
+    const home = homes[0];
     if (!home) {
       console.log("Home not found");
       return res.redirect('/home-list');

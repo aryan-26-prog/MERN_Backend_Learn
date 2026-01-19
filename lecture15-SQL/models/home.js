@@ -55,10 +55,10 @@ module.exports = class Home{
 
   //Used to find the particular home by id
   static findById(homeID, callback) {
-    
+    return db.execute('SELECT * FROM homes WHERE id=?', [homeID]);   //used to select from the query
   }
 
   static deleteById(homeID, callback) {
-    
+    return db.execute('DELETE FROM homes WHERE id=?', [homeID]);   //used to delete from the query
   }
 }

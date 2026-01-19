@@ -14,7 +14,8 @@ exports.getEditHome = (req, res, next) => {
   const homeId = req.params.homeId;
   const editing = req.query.editing === 'true';  //used to read the editing type of query parameter from the url
   //This function is used to get the already filled details of edited home
-  Home.findById(homeId, home => {
+  Home.findById(homeId).then(([homes]) => {
+    const home = homes[0];
     if(!home) {
       console.log("Home not found for edit");
       return res.redirect("/host/host-home-list");
@@ -72,10 +73,9 @@ exports.postEditHome = (req, res) => {
 exports.postDeleteHome = (req, res, next) => {
   const homeId = req.params.homeId;
   console.log("Came to delete", homeId);
-  Home.deleteById(homeId, error => {
-    if(error) {
-      console.log("Error While Deleting", error);
-    }
+  Home.deleteById(homeId).then(() => {
     res.redirect('/host/host-home-list');
-  });
+  }).catch(error => {
+    console.log('Error while deleting', error);
+  })
 };

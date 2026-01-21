@@ -1,11 +1,27 @@
-//Making connections uwith mysql
-const mysql = require("mysql2");
+const mongodb = require("mongodb"); 
 
-const pool = mysql.createPool({  //It is used to manage and establish a connection pool
-  host: "localhost",
-  user: "root",
-  password: "Aryan#26@",
-  database: "airbnb"
-}); 
+const MongoClient = mongodb.MongoClient; 
 
-module.exports = pool.promise();  //This allows you to interact with the MySQL database using the modern JavaScript async/await syntax 
+const MONGO_URI = "mongodb+srv://aryandhiman2605_db_user:aryan26%40@cluster0.eu9ofma.mongodb.net/?appName=Cluster0";
+
+let _db;
+
+const mongoConnect = (callback) => { 
+  MongoClient.connect(MONGO_URI).then(client => { 
+    callback(client); 
+    _db = client.db('airbnb');
+  }).catch(error => { 
+    console.log("Error while connecting monogdb", error); 
+  }); 
+}
+
+const getDB = () => {
+  if(!_db) {
+    throw new Error('Mongo not connected');
+  }
+  return _db;
+}
+
+
+module.exports = mongoConnect;
+module.getDB = getDB;

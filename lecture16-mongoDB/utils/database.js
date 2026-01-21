@@ -2,7 +2,7 @@ const mongodb = require("mongodb");
 
 const MongoClient = mongodb.MongoClient; 
 
-const MONGO_URI = "mongodb+srv://aryandhiman2605_db_user:aryan26%40@cluster0.eu9ofma.mongodb.net/?appName=Cluster0";
+const MONGO_URI = YOUR_URI;
 
 let _db;
 

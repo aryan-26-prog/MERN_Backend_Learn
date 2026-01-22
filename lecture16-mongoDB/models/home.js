@@ -1,4 +1,4 @@
-
+const { getDB } = require('../utils/database');
 
 module.exports = class Home{
   constructor(id, houseName, price, location, rating, photoUrl, description) {
@@ -13,8 +13,9 @@ module.exports = class Home{
 
   //this function used to push data into the array
   save() {
-  
-}
+    const db = getDB();
+    return db.collection('homes').insertOne(this);
+  }
 
 
   
